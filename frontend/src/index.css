@@ -225,7 +225,7 @@ button {
 
 /* Destination title — mirrors the home-screen button style */
 .board__title {
-  margin: var(--space-4);
+  margin: var(--space-4) var(--space-4) 0;
   padding: var(--space-5) var(--space-4);
   background: #0b0a07;
   border-radius: var(--radius-md);
@@ -326,7 +326,7 @@ button {
 
 /* Recommendation box */
 .board__recommendation {
-  margin: var(--space-6) var(--space-4) var(--space-4);
+  margin: var(--space-2) var(--space-4) var(--space-4);
   padding: var(--space-4);
   border: 1px solid var(--amber-faint);
   border-radius: var(--radius-md);
