@@ -1,61 +1,69 @@
 import { useArrivals } from '../hooks/useArrivals'
 
-function ArrivalCountdown({ seconds }) {
+function formatTime(seconds) {
   const mins = Math.floor(seconds / 60)
-  const imminent = mins < 2
-  return (
-    <div className="departure-board">
-      <span className={`departure-board__time${imminent ? ' departure-board__time--imminent' : ''}`}>
-        {imminent ? 'Due' : mins}
-      </span>
-      <span className="departure-board__label">{imminent ? 'now' : 'min'}</span>
-    </div>
-  )
+  return mins < 2 ? 'due' : `${mins} min`
 }
 
-function StopGroup({ stop }) {
-  return (
-    <section>
-      <header className="stop-group__header">
-        <h2 className="stop-group__name">{stop.name}</h2>
-        <span className="stop-group__walk">{stop.walkMinutes} min walk</span>
-      </header>
-
-      {stop.arrivals.length === 0 ? (
-        <p className="status-message">No arrivals in the next 30 minutes</p>
-      ) : (
-        stop.arrivals.map((arrival) => (
-          <article className="arrival-card" key={arrival.id}>
-            <span className="arrival-card__route">{arrival.lineName}</span>
-            <span className="arrival-card__destination">{arrival.destinationName}</span>
-            <ArrivalCountdown seconds={arrival.timeToStation} />
-          </article>
-        ))
-      )}
-    </section>
-  )
+function isDue(seconds) {
+  return Math.floor(seconds / 60) < 2
 }
 
 export function ArrivalsView() {
   const { data, loading, error } = useArrivals()
 
+  // Pre-number every arrival row sequentially across all stops
+  const stops = data
+    ? data.map((stop, si) => {
+        const offset = data
+          .slice(0, si)
+          .reduce((sum, s) => sum + s.arrivals.length, 0)
+        return {
+          ...stop,
+          arrivals: stop.arrivals.map((a, i) => ({ ...a, rowNum: offset + i + 1 })),
+        }
+      })
+    : []
+
   return (
-    <div className="arrivals-view">
-      {loading && <p className="status-message">Loading arrivals…</p>}
+    <div className="board">
+      {loading && (
+        <div className="board__status">Connecting to TfL…</div>
+      )}
 
       {error && (
-        <p className="status-message status-message--error">
-          Could not load arrivals: {error}
-        </p>
+        <div className="board__status board__status--error">No signal</div>
       )}
 
-      {data && (
-        <div className="stops-list">
-          {data.map((stop) => (
-            <StopGroup key={stop.stopId} stop={stop} />
-          ))}
+      {stops.map((stop) => (
+        <div key={stop.stopId} className="board__group">
+          {/* Stop name header — like the section dividers on real boards */}
+          <div className="board__stop-header">
+            <span>{stop.name.toUpperCase()}</span>
+            <span>{stop.walkMinutes} MIN WALK</span>
+          </div>
+
+          {stop.arrivals.length === 0 ? (
+            <div className="board__row">
+              <span className="board__index" />
+              <span className="board__route">—</span>
+              <span className="board__destination">No buses predicted</span>
+              <span className="board__time">—</span>
+            </div>
+          ) : (
+            stop.arrivals.map((arrival) => (
+              <div className="board__row" key={arrival.id}>
+                <span className="board__index">{arrival.rowNum}</span>
+                <span className="board__route">{arrival.lineName}</span>
+                <span className="board__destination">{arrival.destinationName}</span>
+                <span className={`board__time${isDue(arrival.timeToStation) ? ' board__time--due' : ''}`}>
+                  {formatTime(arrival.timeToStation)}
+                </span>
+              </div>
+            ))
+          )}
         </div>
-      )}
+      ))}
     </div>
   )
 }

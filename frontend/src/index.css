@@ -232,125 +232,126 @@ button {
 }
 
 /* ------------------------------------------------------------
-   ARRIVALS VIEW
+   VIEW TRANSITIONS
    ------------------------------------------------------------ */
-.arrivals-view {
-  padding: var(--space-6) var(--space-4);
-  animation: view-enter 220ms ease both;
-}
-
-.destinations {
+.destinations,
+.board {
   animation: view-enter 220ms ease both;
 }
 
 @keyframes view-enter {
-  from {
-    opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 /* ------------------------------------------------------------
-   ARRIVALS LIST
+   LED ARRIVALS BOARD
+   Modelled on the TfL iBus dot-matrix stop displays
    ------------------------------------------------------------ */
-.stops-list {
+:root {
+  --amber:       #eb9a1e;
+  --amber-dim:   rgba(235, 154, 30, 0.45);
+  --amber-faint: rgba(235, 154, 30, 0.12);
+  --board-bg:    #0b0a07;
+  --font-board:  'Share Tech Mono', 'Courier New', monospace;
+}
+
+.board {
+  flex: 1;
+  background-color: var(--board-bg);
+  font-family: var(--font-board);
+  overflow-y: auto;
+  padding-bottom: var(--space-6);
+}
+
+/* Stop section */
+.board__group {
+  margin-bottom: var(--space-1);
+}
+
+/* Stop name — dimmer header row, like section dividers on real boards */
+.board__stop-header {
   display: flex;
-  flex-direction: column;
-  gap: var(--space-8);
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  font-size: 0.65rem;
+  letter-spacing: 0.14em;
+  color: var(--amber-dim);
+  border-top: 1px solid var(--amber-faint);
+  border-bottom: 1px solid var(--amber-faint);
 }
 
-.stop-group__header {
-  display: flex;
-  align-items: baseline;
-  gap: var(--space-3);
-  margin-bottom: var(--space-4);
-  padding-bottom: var(--space-2);
-  border-bottom: 2px solid var(--color-navy);
+.board__group:first-child .board__stop-header {
+  border-top: none;
 }
 
-.stop-group__name {
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-navy);
-  line-height: var(--line-height-tight);
-}
-
-.stop-group__walk {
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-regular);
-  color: var(--color-navy);
-  opacity: 0.55;
-}
-
-/* --- Arrival card row --- */
-.arrival-card {
+/* Arrival row — 4 columns matching the real board layout:
+   row-num | route | destination | time */
+.board__row {
   display: grid;
-  grid-template-columns: 3rem 1fr auto;
+  grid-template-columns: 1.4rem 2.8rem 1fr auto;
   align-items: center;
   gap: var(--space-3);
-  background-color: var(--color-card-bg);
-  border-left: var(--card-border-width) solid var(--color-card-border);
-  border-radius: var(--radius-sm);
-  box-shadow: var(--shadow-card);
   padding: var(--space-3) var(--space-4);
-  margin-bottom: var(--space-3);
+  border-bottom: 1px solid var(--amber-faint);
 }
 
-.arrival-card__route {
+/* Sequential position counter — very dim, purely decorative */
+.board__index {
+  font-size: var(--font-size-xs);
+  color: var(--amber-dim);
+  text-align: right;
+  opacity: 0.6;
+}
+
+/* Route number — brightest, largest element */
+.board__route {
   font-size: var(--font-size-xl);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-red);
+  color: var(--amber);
+  text-shadow: 0 0 10px rgba(235, 154, 30, 0.7);
   line-height: 1;
-  text-align: center;
 }
 
-.arrival-card__destination {
-  font-size: var(--font-size-sm);
-  font-weight: var(--font-weight-medium);
-  color: var(--color-navy);
+/* Destination — standard amber glow */
+.board__destination {
+  font-size: var(--font-size-base);
+  color: var(--amber);
+  text-shadow: 0 0 7px rgba(235, 154, 30, 0.5);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* ------------------------------------------------------------
-   DEPARTURE BOARD — flip-board countdown
-   ------------------------------------------------------------ */
-.departure-board {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: var(--color-board-bg);
-  border: 1px solid var(--color-board-border);
-  border-radius: var(--radius-sm);
-  padding: var(--space-2) var(--space-3);
-  min-width: 3.75rem;
+/* Arrival time — right-aligned */
+.board__time {
+  font-size: var(--font-size-base);
+  color: var(--amber);
+  text-shadow: 0 0 7px rgba(235, 154, 30, 0.5);
+  text-align: right;
+  white-space: nowrap;
 }
 
-.departure-board__time {
-  font-size: var(--font-size-lg);
-  font-weight: var(--font-weight-bold);
-  color: var(--color-board-text);
-  letter-spacing: 0.04em;
-  line-height: 1;
+/* "due" — flips to bright white, like the real boards */
+.board__time--due {
+  color: #ffffff;
+  text-shadow: 0 0 14px rgba(255, 255, 255, 0.85);
 }
 
-.departure-board__time--imminent {
-  color: var(--color-board-accent);
-}
-
-.departure-board__label {
-  font-size: var(--font-size-xs);
-  font-weight: var(--font-weight-light);
-  color: var(--color-board-text);
-  opacity: 0.6;
+/* Loading / error states */
+.board__status {
+  padding: var(--space-12) var(--space-4);
+  text-align: center;
+  font-family: var(--font-board);
+  font-size: var(--font-size-sm);
+  color: var(--amber-dim);
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  letter-spacing: 0.06em;
-  margin-top: var(--space-1);
+}
+
+.board__status--error {
+  color: var(--color-red);
+  opacity: 0.8;
 }
 
 /* ------------------------------------------------------------
