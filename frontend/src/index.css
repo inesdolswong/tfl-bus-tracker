@@ -264,19 +264,11 @@ button {
    row-num | route | destination | time */
 .board__row {
   display: grid;
-  grid-template-columns: 1.4rem 2.8rem 1fr auto;
+  grid-template-columns: 2.8rem 1fr auto;
   align-items: center;
   gap: var(--space-3);
   padding: var(--space-2) var(--space-4);
   border-bottom: 1px solid var(--amber-faint);
-}
-
-/* Sequential position counter — very dim, purely decorative */
-.board__index {
-  font-size: var(--font-size-xs);
-  color: var(--amber-dim);
-  text-align: right;
-  opacity: 0.6;
 }
 
 /* Route number — brightest, largest element */
@@ -310,6 +302,37 @@ button {
 .board__time--due {
   color: #ffffff;
   text-shadow: 0 0 14px rgba(255, 255, 255, 0.85);
+}
+
+/* Recommendation box */
+.board__recommendation {
+  margin: var(--space-6) var(--space-4) var(--space-4);
+  padding: var(--space-4);
+  border: 1px solid var(--amber-faint);
+  border-radius: var(--radius-md);
+  background: #0f0e0a;
+}
+
+.board__recommendation--urgent {
+  border-color: var(--amber);
+}
+
+.board__recommendation-label {
+  font-size: var(--font-size-xs);
+  color: var(--amber-dim);
+  letter-spacing: 0.18em;
+  margin-bottom: var(--space-2);
+}
+
+.board__recommendation-text {
+  font-size: var(--font-size-sm);
+  color: var(--amber);
+  line-height: var(--line-height-normal);
+}
+
+.board__recommendation--urgent .board__recommendation-text {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.6);
 }
 
 /* Loading / error states */
