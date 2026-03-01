@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 650">
+  <!--
+    Simplified London Underground schematic – decorative background texture.
+    Inspired by the TfL tube map. Not an official TfL product.
+    Tube line colours used for authenticity; rendered at ~8% opacity as texture.
+  -->
+
+  <!-- Thames River -->
+  <path d="M 0 468 C 120 440 260 428 400 420 C 480 416 520 408 565 395 C 610 382 660 398 740 418 C 840 442 950 452 1100 446 Q 1160 443 1200 450"
+    fill="none" stroke="#5b9bd5" stroke-width="6" stroke-linecap="round"/>
+
+  <!-- Elizabeth line – E/W through centre -->
+  <polyline
+    points="0,322 90,318 175,312 260,308 335,304 410,298 475,292 530,290 568,290 610,294 660,298 720,294 790,288 870,282 950,276 1030,270 1110,264 1190,258 1200,257"
+    fill="none" stroke="#6950A1" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Central line – E/W, slightly north of Elizabeth -->
+  <polyline
+    points="55,308 130,308 205,275 275,275 355,275 425,275 468,278 510,282 548,282 588,282 628,288 668,290 710,280 760,268 828,258 905,245 990,234 1075,222 1155,212 1200,208"
+    fill="none" stroke="#E32017" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Victoria line – roughly N/S with diagonals -->
+  <polyline
+    points="598,52 580,88 568,125 556,162 548,196 548,228 548,258 548,284 548,330 548,374 548,408 548,444 548,480 548,516 548,552 548,588 548,628 548,650"
+    fill="none" stroke="#0098D4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Northern line – Charing Cross branch -->
+  <polyline
+    points="418,52 432,84 446,116 460,148 462,180 462,212 462,242 468,264 486,280 510,294 535,308 550,332 560,358 568,386 572,414 562,440 546,460 530,488 515,518 502,548 488,580 475,612 462,650"
+    fill="none" stroke="#1C1C1B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Northern line – Bank branch -->
+  <polyline
+    points="560,358 578,348 598,332 620,316 640,300 648,278 648,254 638,232 620,214 602,196 584,178 565,158 548,136 532,110 518,84 506,58"
+    fill="none" stroke="#1C1C1B" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Jubilee line – NW arc through centre to Stratford -->
+  <polyline
+    points="292,72 316,98 340,122 364,146 388,166 415,180 444,192 470,212 494,236 516,260 534,282 548,306 560,330 572,360 600,368 630,368 658,362 690,352 726,346 764,352 802,362 842,362 880,358 918,354 958,358 998,358 1038,354 1072,350"
+    fill="none" stroke="#A0A5A9" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Piccadilly line – diagonal SW to NE -->
+  <polyline
+    points="0,488 68,458 138,428 198,412 255,396 308,378 355,362 400,346 438,332 466,316 488,300 510,286 534,276 564,272 594,272 624,278 656,286 694,272 730,256 768,242 810,228 858,216 916,208 978,200 1042,192 1108,185 1172,178 1200,175"
+    fill="none" stroke="#003888" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- District line – main E/W -->
+  <polyline
+    points="0,408 78,408 158,402 218,386 268,372 308,362 348,358 388,355 428,352 462,352 498,356 528,362 558,368 594,372 628,368 660,358 698,355 738,355 778,360 818,358 858,350 898,342 942,338 992,338 1042,338"
+    fill="none" stroke="#00782A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- District – Wimbledon branch -->
+  <polyline
+    points="308,362 284,390 254,426 220,462 185,494 150,524 112,554"
+    fill="none" stroke="#00782A" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Bakerloo line – N/S through west-centre -->
+  <polyline
+    points="428,72 434,108 440,144 445,178 448,210 450,240 452,264 468,282 488,296 510,310 520,334 522,360 520,390 510,418 498,446 484,476 470,506 455,536 440,566 425,596 410,626 395,650"
+    fill="none" stroke="#B36305" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Metropolitan line – NW -->
+  <polyline
+    points="58,38 98,72 138,108 178,140 214,166 248,190 278,210 308,230 338,248 368,260 398,266 428,268 458,268 488,268 512,270 534,278"
+    fill="none" stroke="#9B0056" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Circle line – loop through Zone 1 -->
+  <polyline
+    points="416,268 436,250 460,234 490,226 518,230 542,246 558,268 568,292 568,320 558,342 538,358 514,364 488,364 462,356 442,340 428,318 420,292 416,268"
+    fill="none" stroke="#FFD300" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Overground – North London Line arc -->
+  <polyline
+    points="248,126 284,148 320,168 350,184 378,198 408,212 435,230 456,250 468,268"
+    fill="none" stroke="#EE7C0E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Overground – South East -->
+  <polyline
+    points="568,402 578,430 590,458 598,486 600,514 596,542 585,568 572,594 558,620 542,648"
+    fill="none" stroke="#EE7C0E" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- DLR – Bank to Lewisham/Stratford -->
+  <polyline
+    points="648,290 670,304 695,320 722,334 750,342 778,356 808,362 838,362 868,352 898,342"
+    fill="none" stroke="#00A4A7" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Interchange circles – major hubs -->
+  <circle cx="576" cy="228" r="8" fill="none" stroke="white" stroke-width="2.5"/> <!-- King's Cross -->
+  <circle cx="534" cy="280" r="7" fill="none" stroke="white" stroke-width="2.5"/> <!-- Oxford Circus -->
+  <circle cx="548" cy="402" r="7" fill="none" stroke="white" stroke-width="2.5"/> <!-- Victoria -->
+  <circle cx="568" cy="366" r="7" fill="none" stroke="white" stroke-width="2.5"/> <!-- Waterloo -->
+  <circle cx="648" cy="296" r="6" fill="none" stroke="white" stroke-width="2.5"/> <!-- Bank -->
+  <circle cx="685" cy="288" r="6" fill="none" stroke="white" stroke-width="2.5"/> <!-- Liverpool St -->
+  <circle cx="450" cy="268" r="7" fill="none" stroke="white" stroke-width="2.5"/> <!-- Paddington -->
+  <circle cx="645" cy="362" r="6" fill="none" stroke="white" stroke-width="2.5"/> <!-- London Bridge -->
+  <circle cx="800" cy="360" r="6" fill="none" stroke="white" stroke-width="2.5"/> <!-- Canary Wharf -->
+  <circle cx="488" cy="265" r="6" fill="none" stroke="white" stroke-width="2.5"/> <!-- Baker Street -->
+  <circle cx="1040" cy="354" r="6" fill="none" stroke="white" stroke-width="2.5"/> <!-- Stratford -->
+  <circle cx="572" cy="414" r="5" fill="none" stroke="white" stroke-width="2"/>   <!-- Elephant & Castle -->
+  <circle cx="462" cy="240" r="5" fill="none" stroke="white" stroke-width="2"/>   <!-- Camden Town -->
+  <circle cx="660" cy="278" r="5" fill="none" stroke="white" stroke-width="2"/>   <!-- Moorgate -->
+</svg>
