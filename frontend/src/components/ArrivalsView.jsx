@@ -67,6 +67,13 @@ export function ArrivalsView({ label }) {
             <span>{stop.walkMinutes} MIN WALK</span>
           </div>
 
+          {stop.disruptions?.length > 0 && (
+            <div className="board__disruption">
+              <span className="board__disruption-icon">!</span>
+              <span>{stop.disruptions[0]}</span>
+            </div>
+          )}
+
           {stop.arrivals.length === 0 ? (
             <div className="board__row">
               <span className="board__route">—</span>

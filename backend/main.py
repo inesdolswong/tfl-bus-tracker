@@ -24,13 +24,13 @@ STOPS = [
 
 
 async def fetch_arrivals_for_stop(client: httpx.AsyncClient, stop: dict) -> dict:
-    response = await client.get(
-        f"{TFL_BASE_URL}/StopPoint/{stop['stopId']}/Arrivals"
+    arrivals_resp, disruptions_resp = await asyncio.gather(
+        client.get(f"{TFL_BASE_URL}/StopPoint/{stop['stopId']}/Arrivals"),
+        client.get(f"{TFL_BASE_URL}/StopPoint/{stop['stopId']}/Disruption"),
     )
-    response.raise_for_status()
+    arrivals_resp.raise_for_status()
 
-    all_arrivals = response.json()
-
+    all_arrivals = arrivals_resp.json()
     relevant = [
         a for a in all_arrivals
         if a.get("lineName") in stop["routes"]
@@ -38,12 +38,20 @@ async def fetch_arrivals_for_stop(client: httpx.AsyncClient, stop: dict) -> dict
     relevant.sort(key=lambda a: a.get("timeToStation", 0))
     relevant = relevant[:3]
 
+    disruptions = []
+    if disruptions_resp.status_code == 200:
+        for d in disruptions_resp.json():
+            description = d.get("description") or d.get("additionalInfo", "")
+            if description:
+                disruptions.append(description)
+
     return {
         "stopId": stop["stopId"],
         "name": stop["name"],
         "walkMinutes": stop["walkMinutes"],
         "routes": stop["routes"],
         "arrivals": relevant,
+        "disruptions": disruptions,
     }
 
 
