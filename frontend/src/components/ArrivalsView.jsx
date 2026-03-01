@@ -52,6 +52,13 @@ export function ArrivalsView({ label }) {
         <div className="board__title">{label.toUpperCase()}</div>
       )}
 
+      {recommendation && (
+        <div className={`board__recommendation${recommendation.urgent ? ' board__recommendation--urgent' : ''}`}>
+          <div className="board__recommendation-label">NEXT BUS</div>
+          <div className="board__recommendation-text">{recommendation.text}</div>
+        </div>
+      )}
+
       {loading && (
         <div className="board__status">Connecting to TfL…</div>
       )}
@@ -94,12 +101,6 @@ export function ArrivalsView({ label }) {
         </div>
       ))}
 
-      {recommendation && (
-        <div className={`board__recommendation${recommendation.urgent ? ' board__recommendation--urgent' : ''}`}>
-          <div className="board__recommendation-label">NEXT BUS</div>
-          <div className="board__recommendation-text">{recommendation.text}</div>
-        </div>
-      )}
     </div>
   )
 }
