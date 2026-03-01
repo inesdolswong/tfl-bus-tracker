@@ -29,40 +29,6 @@ function BackButton({ onClick }) {
   )
 }
 
-function Roundel() {
-  return (
-    <svg
-      width="80"
-      height="80"
-      viewBox="0 0 120 120"
-      xmlns="http://www.w3.org/2000/svg"
-      role="img"
-      aria-label="TFL Bus Tracker"
-    >
-      <defs>
-        <clipPath id="header-roundel-clip">
-          <circle cx="60" cy="60" r="54" />
-        </clipPath>
-      </defs>
-      <circle cx="60" cy="60" r="54" fill="white" />
-      <circle cx="60" cy="60" r="54" fill="none" stroke="#E1251B" strokeWidth="11" />
-      <rect x="0" y="43" width="120" height="34" fill="#003688" clipPath="url(#header-roundel-clip)" />
-      <text
-        x="60" y="60"
-        textAnchor="middle"
-        dominantBaseline="middle"
-        fill="white"
-        fontSize="13"
-        fontWeight="700"
-        fontFamily="Johnston100, Johnston, Arial, sans-serif"
-        letterSpacing="1.5"
-      >
-        BUS TRACKER
-      </text>
-    </svg>
-  )
-}
-
 export default function App() {
   const [activeDestination, setActiveDestination] = useState(null)
 
@@ -72,12 +38,11 @@ export default function App() {
         {activeDestination && (
           <BackButton onClick={() => setActiveDestination(null)} />
         )}
-        <Roundel />
       </header>
 
       <main className="site-main">
         {activeDestination ? (
-          <ArrivalsView key={activeDestination.id} />
+          <ArrivalsView key={activeDestination.id} label={activeDestination.label} />
         ) : (
           <div className="destinations">
             {DESTINATIONS.map((dest) => (
@@ -92,9 +57,6 @@ export default function App() {
         )}
       </main>
 
-      <footer className="site-footer">
-        Powered by TfL Open Data
-      </footer>
     </div>
   )
 }

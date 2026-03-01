@@ -9,7 +9,7 @@ function isDue(seconds) {
   return Math.floor(seconds / 60) < 2
 }
 
-export function ArrivalsView() {
+export function ArrivalsView({ label }) {
   const { data, loading, error } = useArrivals()
 
   // Pre-number every arrival row sequentially across all stops
@@ -27,6 +27,10 @@ export function ArrivalsView() {
 
   return (
     <div className="board">
+      {label && (
+        <div className="board__title">{label.toUpperCase()}</div>
+      )}
+
       {loading && (
         <div className="board__status">Connecting to TfL…</div>
       )}
